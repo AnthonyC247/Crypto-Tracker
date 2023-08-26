@@ -5,8 +5,10 @@
   scroll-behavior: smooth;
 }
 
+
 .App {
   text-align: center;
+  background-color: #61dafb;
 }
 
 .App-logo {
@@ -33,7 +35,21 @@
 
 .App-link {
   color: #61dafb;
+  margin: 0;
+  padding: 0;
 }
+
+h1 {
+  color: purple;
+}
+
+/* App.css */
+body {
+  background-image: url('https://cute.iium.edu.my/images/reactnative.png'); /* Replace with your image path */
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 
 @keyframes App-logo-spin {
   from {

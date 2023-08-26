@@ -1,10 +1,19 @@
 import React, { useState, useEffect } from 'react'; // Don't forget to import React
+import ReactDOM from 'react-dom';
 import './App.css';
+import './index.css';
+
+
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
 
 function App() {
   const [cryptoData, setCryptoData] = useState([]);
   const [currency, setCurrency] = useState('usd');
-
   useEffect(() => {
     // Fetch cryptocurrency price data from the API
     async function fetchData() {
@@ -36,6 +45,8 @@ function App() {
   return (
     <div className="App">
       <h1>Crypto Price Tracker</h1>
+      <img src={process.env.PUBLIC_URL + '/ethereum-symbol.jpeg'} alt="Ethereum" />
+
       <div>
         <label htmlFor="currency">Select Currency:</label>
         <select id="currency" value={currency} onChange={handleChangeCurrency}>
