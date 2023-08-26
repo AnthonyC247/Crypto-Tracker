@@ -1,36 +1,62 @@
-import React from 'react'; // Don't forget to import React
+import React, { useState, useEffect } from 'react'; // Don't forget to import React
 import './App.css';
 
 function App() {
-  const data = {
-    bitcoin: { usd: 45000 }, // Example data, replace with actual data
-    ethereum: { usd: 3200 }, // Example data, replace with actual data
-    ripple: { usd: 1.2 },    // Example data, replace with actual data
+  const [cryptoData, setCryptoData] = useState([]);
+  const [currency, setCurrency] = useState('usd');
+
+  useEffect(() => {
+    // Fetch cryptocurrency price data from the API
+    async function fetchData() {
+      try {
+        const response = await fetch(
+          'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,ripple&vs_currencies=usd,eur'
+        );
+        const data = await response.json();
+        setCryptoData(data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    }
+
+    fetchData();
+  }, []);
+
+  const handleChangeCurrency = (event) => {
+    setCurrency(event.target.value);
+  };
+
+  const getCryptoRows = () => {
+    return Object.keys(cryptoData).map((crypto) => ({
+      name: crypto,
+      price: cryptoData[crypto][currency],
+    }));
   };
 
   return (
     <div className="App">
       <h1>Crypto Price Tracker</h1>
+      <div>
+        <label htmlFor="currency">Select Currency:</label>
+        <select id="currency" value={currency} onChange={handleChangeCurrency}>
+          <option value="usd">USD</option>
+          <option value="eur">EUR</option>
+        </select>
+      </div>
       <table>
         <thead>
           <tr>
             <th>Cryptocurrency</th>
-            <th>Price (USD)</th>
+            <th>Price ({currency.toUpperCase()})</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Bitcoin (BTC)</td>
-            <td>{data['bitcoin']['usd']}</td>
-          </tr>
-          <tr>
-            <td>Ethereum (ETH)</td>
-            <td>{data['ethereum']['usd']}</td>
-          </tr>
-          <tr>
-            <td>Ripple (XRP)</td>
-            <td>{data['ripple']['usd']}</td>
-          </tr>
+          {getCryptoRows().map((crypto) => (
+            <tr key={crypto.name}>
+              <td>{crypto.name}</td>
+              <td>{crypto.price}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
@@ -38,3 +64,8 @@ function App() {
 }
 
 export default App;
+
+
+
+
+
