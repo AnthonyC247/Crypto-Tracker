@@ -1,3 +1,11 @@
+# Crypto-Tracker:
+
+I created this application during the Major League Hackathon Web3event 
+The application allows users to interact with the dropdown menu to select which crypto-currency prices to view (US or EUR)
+
+I am currently updating the application during my time to further improve the static and dynamic implementation
+If you encounter any errors when deploying the application with React, simply press the 'X' button in the corner and you'll be be able to play around with it!
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
