@@ -1,6 +1,6 @@
 # Crypto-Tracker:
 
-I created this application during the Major League Hackathon Web3event 
+I created this application during the Major League Hackathon Web3App 48 hour event 
 The application allows users to interact with the dropdown menu to select which crypto-currency prices to view (US or EUR)
 
 I am currently updating the application during my time to further improve the static and dynamic implementation
